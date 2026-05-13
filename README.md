@@ -1,35 +1,27 @@
-# FRIDAY
+# friday-jarvis-core
 
-FRIDAY, Demir Adam'ın JARVIS vizyonundan ilham alan; modüler, genişletilebilir ve yerel çalıştırılabilir bir yapay zeka asistan altyapısıdır.
+Production-ready monorepo foundation for a FRIDAY-style AI core.
 
-## Vizyon
-- **Komuta merkezi**: Metin/ses komutlarını alır ve niyetleri çözümler.
-- **Beceri sistemi**: Her yetenek bağımsız bir "skill" modülü olarak eklenir.
-- **Güvenli eylem katmanı**: Kritik aksiyonlar için kural tabanlı onay mekanizması.
-- **Geleceğe açık**: LLM, TTS, STT, otomasyon ve IoT entegrasyonlarına hazır çekirdek.
+## Stack
+- Next.js 15 App Router + TypeScript
+- Tailwind + shadcn/ui-ready component architecture
+- `packages/core` for modular agent + tools
+- Prisma + PostgreSQL/Supabase
+- Upstash Redis (rate limiting/cache placeholder)
+- NextAuth-ready auth boundary
 
-## Hızlı Başlangıç
-
+## Run
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .[dev]
-python -m friday.cli "sistemi başlat"
+npm install
+npm run dev
 ```
 
-## Örnek Komutlar
-- `sistemi başlat`
-- `durum raporu ver`
-- `ışıkları aç`
-- `takvime yarın 09:00 toplantı ekle`
+## API
+- `GET /api/health`
+- `POST /api/chat`
+- `GET /api/voice/realtime`
 
-## Mimari
-- `friday.core`: Orkestrasyon, olay modeli, güvenlik ve skill kaydı.
-- `friday.skills`: Dahili skill'ler (sistem, ev otomasyonu, takvim örnekleri).
-- `friday.cli`: Hızlı prototipleme için komut satırı arayüzü.
-
-## Yol Haritası
-1. Ses girişi/çıkışı (STT/TTS) adaptörleri
-2. Çoklu ajan koordinasyonu
-3. Uzun dönem hafıza ve bağlam yönetimi
-4. Görev planlayıcı + bildirim altyapısı
+## Architecture
+- `apps/web`: UI + API routes
+- `packages/core`: agent orchestration, memory, tools, guards
+- `prisma`: relational schema
